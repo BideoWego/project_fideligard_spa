@@ -1,19 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import Error404 from './components/Error404';
+import Navigation from './components/Navigation';
+import Dates from './components/Dates';
+import Portfolios from './components/Portfolios';
+import Stocks from './components/Stocks';
+import Trades from './components/Trades';
+import Transactions from './components/Transactions';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+          <Navigation />
+          <div className="container">
+            <Switch>
+              <Route exact path="/404" render={props => <Error404 {...props} backUrl="/portfolios" /> } />
+              <Route path="/" render={() => (
+                <div className="row">
+                  <div className="col">
+                    <Stocks />
+                  </div>
+                  <div className="col">
+                    <Dates />
+                    <Switch>
+                      <Route exact path="/portfolios" component={Portfolios} />
+                      <Route exact path="/trades" component={Trades} />
+                      <Route exact path="/transactions" component={Transactions} />
+                      <Redirect to="/404" />
+                    </Switch>
+                  </div>
+                </div>
+              )} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
     );
   }
 }
