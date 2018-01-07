@@ -1,15 +1,8 @@
 import React from 'react';
+import USD from './USD';
 
-const Stocks = () => (
-  <div className="Stocks">
-    <div className="row">
-      <div className="col-4">
-        <h1>Stocks</h1>
-      </div>
-      <div className="col-8">
-        <input type="text" className="form-control" placeholder="Filter..."/>
-      </div>
-    </div>
+const Stocks = ({ stocks, tickers, filter, onChange }) => {
+  const stocksList = Object.keys(tickers).length ? (
     <table className="table">
       <thead>
         <tr>
@@ -22,57 +15,40 @@ const Stocks = () => (
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>AAPL</td>
-          <td>1234.1234</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>Trade</td>
-        </tr>
-        <tr>
-          <td>AAPL</td>
-          <td>1234.1234</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>Trade</td>
-        </tr>
-        <tr>
-          <td>AAPL</td>
-          <td>1234.1234</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>Trade</td>
-        </tr>
-        <tr>
-          <td>AAPL</td>
-          <td>1234.1234</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>Trade</td>
-        </tr>
-        <tr>
-          <td>AAPL</td>
-          <td>1234.1234</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>Trade</td>
-        </tr>
-        <tr>
-          <td>AAPL</td>
-          <td>1234.1234</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>+1</td>
-          <td>Trade</td>
-        </tr>
+        {Object.keys(tickers).map(ticker => {
+          const stock = stocks[ticker];
+          return (
+            <tr key={ticker.toUpperCase()}>
+              <td>{ticker}</td>
+              <td>{<USD amount={stock.close} className="text-primary" />}</td>
+              <td>{stock.d1 ? <USD amount={stock.d1} /> : "N/A"}</td>
+              <td>{stock.d7 ? <USD amount={stock.d7} /> : "N/A"}</td>
+              <td>{stock.d30 ? <USD amount={stock.d30} /> : "N/A"}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
-  </div>
-);
+  ) : <p className="text-danger">No matched tickers</p>;
+
+  return (
+    <div className="Stocks">
+      <div className="row">
+        <div className="col-4">
+          <h1>Stocks</h1>
+        </div>
+        <div className="col-8">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Filter..."
+            value={filter}
+            onChange={onChange} />
+        </div>
+      </div>
+      {stocksList}
+    </div>
+  );
+};
 
 export default Stocks;

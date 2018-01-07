@@ -9,7 +9,7 @@ import Error404 from './components/Error404';
 import Navigation from './components/Navigation';
 import DatesContainer from './containers/DatesContainer';
 import Portfolios from './components/Portfolios';
-import Stocks from './components/Stocks';
+import StocksContainer from './containers/StocksContainer';
 import Trades from './components/Trades';
 import Transactions from './components/Transactions';
 import { default as data } from '../src/data/scrubbed';
@@ -17,12 +17,16 @@ import { default as data } from '../src/data/scrubbed';
 class App extends Component {
   constructor() {
     super();
-    this.state = Object.assign({ selectedDateIndex: 0 }, data);
+    this.state = Object.assign({
+      selectedDateIndex: 0,
+      selectedDate: data.dates[0]
+    }, data);
   }
 
   setSelectedDateIndex = index => {
     this.setState({
-      selectedDateIndex: index
+      selectedDateIndex: index,
+      selectedDate: this.state.dates[index]
     });
   }
 
@@ -42,7 +46,10 @@ class App extends Component {
               <Route path="/" render={() => (
                 <div className="row">
                   <div className="col">
-                    <Stocks />
+                    <StocksContainer
+                      stocks={this.state.stocks.byDate}
+                      tickers={this.state.tickers}
+                      date={this.state.selectedDate} />
                   </div>
                   <div className="col">
                     <DatesContainer
