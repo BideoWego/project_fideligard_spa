@@ -19,7 +19,6 @@ class StocksContainer extends Component {
       }
     });
 
-
     this.setState({
       filter,
       tickers

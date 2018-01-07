@@ -17,7 +17,10 @@ class DatesContainer extends Component {
 
     return (
       <div className="DatesContainer">
-        <Dates value={this.props.selectedDateIndex} dates={this.state.dates} onChange={this.onDateChange} />
+        <Dates
+          value={this.props.selectedDateIndex}
+          dates={this.state.dates}
+          onChange={this.onDateChange} />
       </div>
     );
   }

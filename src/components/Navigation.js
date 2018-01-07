@@ -36,17 +36,26 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink activeClassName="active" to="/portfolios" tag={RRNavLink}>
+                <NavLink
+                  activeClassName="active"
+                  to="/portfolios"
+                  tag={RRNavLink}>
                   Portfolios
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink activeClassName="active" to="/trades" tag={RRNavLink}>
+                <NavLink
+                  activeClassName="active"
+                  to="/trades"
+                  tag={RRNavLink}>
                   Trades
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink activeClassName="active" to="/transactions" tag={RRNavLink}>
+                <NavLink
+                  activeClassName="active"
+                  to="/transactions"
+                  tag={RRNavLink}>
                   Transactions
                 </NavLink>
               </NavItem>
