@@ -18,8 +18,8 @@ const Stocks = ({ stocks, tickers, filter, onChange }) => {
         {Object.keys(tickers).map(ticker => {
           const stock = stocks[ticker];
           return (
-            <tr key={ticker.toUpperCase()}>
-              <td>{ticker}</td>
+            <tr key={ticker}>
+              <td>{ticker.toUpperCase()}</td>
               <td>{<USD amount={stock.close} className="text-primary" />}</td>
               <td>{stock.d1 ? <USD amount={stock.d1} /> : "N/A"}</td>
               <td>{stock.d7 ? <USD amount={stock.d7} /> : "N/A"}</td>

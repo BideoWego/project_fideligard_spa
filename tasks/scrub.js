@@ -8,18 +8,19 @@ const moment = require('moment');
 // Variables and functions
 // ----------------------------------------
 const projections = [
-  [25, 'hours'],
+  [24, 'hours'],
   [7, 'days'],
   [30, 'days']
 ];
 
 const project = date => {
-  const [ d1, d2, d30 ] = projections.map(projection => {
+  const [ d1, d7, d30 ] = projections.map(projection => {
     const [ num, interval ] = projection;
-    return moment(date).add(num, interval).format().slice(0, 10);
+    const d = moment(date).subtract(num, interval).format().slice(0, 10);
+    return d;
   });
 
-  return { d1, d2, d30 };
+  return { d1, d7, d30 };
 };
 
 const getProjectedValues = ({ d1, d7, d30, stocks, ticker }) => {
@@ -115,6 +116,8 @@ try {
       d7,
       d30
     } = project(date);
+
+    console.log(d1, d7, d30);
 
     Object.keys(scrubbed.stocks.byDate[date]).forEach(ticker => {
       const {
