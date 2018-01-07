@@ -1,6 +1,6 @@
 const fs = require('fs');
-const raw = require('../data/raw');
-const { startDate, endDate } = require('../data/config');
+const raw = require('../src/data/raw');
+const { startDate, endDate } = require('../src/data/config');
 
 
 // ----------------------------------------
@@ -62,11 +62,11 @@ try {
     });
   });
 
-  scrubbed.dates = Object.keys(dates);
+  scrubbed.dates = Object.keys(dates).reverse();
 
   console.log('Writing...');
   const data = JSON.stringify(scrubbed, null, 2);
-  fs.writeFileSync("./data/scrubbed/index.json", data);
+  fs.writeFileSync("./src/data/scrubbed/index.json", data);
 
   console.log('Done.');
 } catch (e) {

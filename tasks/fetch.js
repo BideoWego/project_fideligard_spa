@@ -9,7 +9,7 @@ require('dotenv').config();
 // ----------------------------------------
 // Variables and functions
 // ----------------------------------------
-const { tickers, startDate, endDate } = require('../data/config');
+const { tickers, startDate, endDate } = require('../src/data/config');
 const baseUrl = 'https://www.quandl.com/api/v3/datasets/EOD/';
 
 const apiUrlFor = ticker => {
@@ -36,7 +36,7 @@ try {
     let data = await response.json();
     console.log(`Writing data for: ${ ticker }`);
     data = JSON.stringify(data, null, 2);
-    fs.writeFileSync(`data/raw/${ ticker }.json`, data);
+    fs.writeFileSync(`./src/data/raw/${ ticker }.json`, data);
     console.log('Success!');
   });
 
