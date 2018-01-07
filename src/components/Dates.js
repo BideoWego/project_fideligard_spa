@@ -3,11 +3,11 @@ import React from 'react';
 const Dates = ({ dates, onChange, value }) => (
   <div className="Dates">
     <h2>Date: {dates[value]}</h2>
-    <div class="row justify-content-between">
-      <div class="col-4">
+    <div className="row justify-content-between">
+      <div className="col-4">
         {dates[0]}
       </div>
-      <div class="col-4 text-right">
+      <div className="col-4 text-right">
         {dates[dates.length - 1]}
       </div>
     </div>
