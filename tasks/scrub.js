@@ -22,6 +22,31 @@ const project = date => {
   return { d1, d2, d30 };
 };
 
+const getProjectedValues = ({ d1, d7, d30, stocks, ticker }) => {
+  return [
+    [d1, 1],
+    [d7, 7],
+    [d30, 30]
+  ].reduce((s, [d, n]) => {
+    s[`v${ n }`] = stocks[d] ? stocks[d][ticker] : {}
+    return s;
+  }, {});
+};
+
+const calculatedProjected = ({ v1, v7, v30, stocks, date, ticker }) => {
+  const current = stocks[date][ticker];
+
+  return [
+    [v1, 1],
+    [v7, 7],
+    [v30, 30]
+  ].reduce((s, [v, n]) => {
+    s[`d${ n }`] = v.close ? (v.close - current.close).toPrecision(2) : null
+    return s;
+  }, {});
+};
+
+
 
 // ----------------------------------------
 // Initial data and format
@@ -85,20 +110,33 @@ try {
   scrubbed.dates = Object.keys(dates).reverse();
 
   scrubbed.dates.forEach(date => {
-    const { d1, d7, d30 } = project(date);
+    const {
+      d1,
+      d7,
+      d30
+    } = project(date);
 
     Object.keys(scrubbed.stocks.byDate[date]).forEach(ticker => {
-      const values1 = scrubbed.stocks.byDate[d1] ? scrubbed.stocks.byDate[d1][ticker] : {};
-      const values7 = scrubbed.stocks.byDate[d7] ? scrubbed.stocks.byDate[d7][ticker] : {};
-      const values30 = scrubbed.stocks.byDate[d30] ? scrubbed.stocks.byDate[d30][ticker] : {};
-      console.log(values1, values7, values30);
+      const {
+        v1,
+        v7,
+        v30
+      } = getProjectedValues({
+        d1,
+        d7,
+        d30,
+        stocks: scrubbed.stocks.byDate,
+        ticker
+      });
 
-      const current = scrubbed.stocks.byDate[date][ticker];
-      const projected = {
-        d1: values1.close ? (values1.close - current.close).toPrecision(2) : null,
-        d7: values7.close ? (values7.close - current.close).toPrecision(2) : null,
-        d30: values30.close ? (values30.close - current.close).toPrecision(2) : null
-      };
+      const projected = calculatedProjected({
+        v1,
+        v7,
+        v30,
+        stocks: scrubbed.stocks.byDate,
+        date,
+        ticker
+      });
 
       Object.assign(scrubbed.stocks.byDate[date][ticker], projected);
       Object.assign(scrubbed.stocks.byTicker[ticker][date], projected);
