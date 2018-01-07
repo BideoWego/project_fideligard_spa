@@ -7,13 +7,25 @@ import {
 } from 'react-router-dom';
 import Error404 from './components/Error404';
 import Navigation from './components/Navigation';
-import Dates from './components/Dates';
+import DatesContainer from './containers/DatesContainer';
 import Portfolios from './components/Portfolios';
 import Stocks from './components/Stocks';
 import Trades from './components/Trades';
 import Transactions from './components/Transactions';
+import { default as data } from '../src/data/scrubbed';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = Object.assign({ selectedDateIndex: 0 }, data);
+  }
+
+  setSelectedDateIndex = index => {
+    this.setState({
+      selectedDateIndex: index
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -21,18 +33,29 @@ class App extends Component {
           <Navigation />
           <div className="container">
             <Switch>
-              <Route exact path="/404" render={props => <Error404 {...props} backUrl="/portfolios" /> } />
+              <Route
+                exact
+                path="/404"
+                render={
+                  props => <Error404 {...props} backUrl="/portfolios" />
+                } />
               <Route path="/" render={() => (
                 <div className="row">
                   <div className="col">
                     <Stocks />
                   </div>
                   <div className="col">
-                    <Dates />
+                    <DatesContainer
+                      dates={this.state.dates}
+                      setSelectedDateIndex={this.setSelectedDateIndex}
+                      selectedDateIndex={this.state.selectedDateIndex} />
                     <Switch>
                       <Route exact path="/portfolios" component={Portfolios} />
                       <Route exact path="/trades" component={Trades} />
-                      <Route exact path="/transactions" component={Transactions} />
+                      <Route
+                        exact
+                        path="/transactions"
+                        component={Transactions} />
                       <Redirect to="/404" />
                     </Switch>
                   </div>
