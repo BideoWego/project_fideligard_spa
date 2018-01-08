@@ -15,17 +15,34 @@ const Trades = ({
   date,
   quantity,
   tradeType,
+  total,
   onChangeQuantity,
   onChangeTradeType,
-  onSubmitTrade
+  onSubmitTrade,
+  onResetTrade
 }) => (
   <div className="Trade">
     <h1>Trade</h1>
     <div className="row">
       <div className="col">
-        <h2>Company: {ticker.name}</h2>
-        <h2>Symbol: {symbol.toUpperCase()}</h2>
-        <h3>Date: {date}</h3>
+        <div className="row">
+          <div className="col">
+            <h2>Company: {ticker.name}</h2>
+            <h2>Symbol: {symbol.toUpperCase()}</h2>
+            <h3>Date: {date}</h3>
+          </div>
+          <div className="col">
+            <h3>
+              Bank: <USD amount={bank} />
+            </h3>
+            <h3>
+              Status:
+              <span className={total <= bank ? "text-success" : "text-danger"}>
+                {total <= bank ? "Valid" : "Invalid"}
+              </span>
+            </h3>
+          </div>
+        </div>
         <div className="row">
           <div className="col">
             <FormGroup check>
@@ -74,15 +91,18 @@ const Trades = ({
           <h3>x {quantity}</h3>
           <hr/>
           <h3>
-            Total: <USD amount={stock.close * quantity} />
+            Total: <USD amount={total} />
           </h3>
         </div>
-        <FormGroup>
-          <Button
-            onClick={e => onSubmitTrade(e, stock.close * quantity)}>
-            Submit
-          </Button>
-        </FormGroup>
+        <Button color="primary"
+          onClick={e => onSubmitTrade(e, total)}>
+          Submit
+        </Button>
+        {' '}
+        <Button color="danger"
+          onClick={onResetTrade}>
+          Reset
+        </Button>
       </div>
     </div>
   </div>

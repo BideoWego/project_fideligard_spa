@@ -17,11 +17,12 @@ import { default as data } from '../src/data/scrubbed';
 class App extends Component {
   constructor() {
     super();
+     // TODO change bank to be date sensitive
     this.state = Object.assign({
       selectedDateIndex: 0,
       selectedDate: data.dates[0],
       transactions: [],
-      bank: 100000
+      bank: 1000000
     }, data);
   }
 

@@ -28,14 +28,17 @@ class TradesContainer extends Component {
       date: this.props.date,
       amount
     });
+  }
 
+  onResetTrade = e => {
     const state = this._initialState();
     this.setState(state);
-  }
+  };
 
   render() {
     const stocksOnDate = this.props.stocks.byDate[this.props.date];
     const stock = stocksOnDate[this.props.match.params.ticker];
+    const total = this.state.quantity * stock.close;
     return (
       <div className="TradesContainer">
         <Trades
@@ -46,9 +49,11 @@ class TradesContainer extends Component {
           date={this.props.date}
           quantity={this.state.quantity}
           tradeType={this.state.tradeType}
+          total={total}
           onChangeQuantity={this.onChangeQuantity}
           onChangeTradeType={this.onChangeTradeType}
-          onSubmitTrade={this.onSubmitTrade} />
+          onSubmitTrade={this.onSubmitTrade}
+          onResetTrade={this.onResetTrade} />
       </div>
     );
   }
