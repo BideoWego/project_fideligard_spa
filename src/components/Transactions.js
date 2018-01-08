@@ -15,7 +15,7 @@ const Transactions = ({ transactions }) => {
     </thead>
     <tbody>
       {transactions.map(transaction => (
-        <tr>
+        <tr key={transaction.id}>
           <td>{transaction.date}</td>
           <td>
             <StringUtil fn="upperCase" string={transaction.ticker} />

@@ -12,7 +12,8 @@ import Portfolios from './components/Portfolios';
 import StocksContainer from './containers/StocksContainer';
 import TradesContainer from './containers/TradesContainer';
 import Transactions from './components/Transactions';
-import { default as data } from '../src/data/scrubbed';
+import { default as data } from './data/scrubbed';
+import { default as transactions } from './data/transactions';
 
 class App extends Component {
   constructor() {
@@ -21,7 +22,8 @@ class App extends Component {
     this.state = Object.assign({
       selectedDateIndex: 0,
       selectedDate: data.dates[0],
-      transactions: [],
+      nextTransactionId: 5,
+      transactions,
       bank: 1000000
     }, data);
   }
@@ -37,8 +39,12 @@ class App extends Component {
     this.setState({
       transactions: [
         ...this.state.transactions,
-        transaction
+        {
+          id: this.state.nextTransactionId,
+          ...transaction
+        }
       ],
+      nextTransactionId: this.state.nextTransactionId + 1,
       bank: this.state.bank + transaction.amount
     }, () => console.log(this.state));
   }

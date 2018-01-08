@@ -1,0 +1,29 @@
+[{
+  "id": 1,
+  "ticker": "aapl",
+  "quantity": 5,
+  "type": "buy",
+  "date": "2017-01-03",
+  "amount": -116.15
+}, {
+  "id": 2,
+  "ticker": "vz",
+  "quantity": 3,
+  "type": "sell",
+  "date": "2017-01-03",
+  "amount": -54.58
+}, {
+  "id": 3,
+  "ticker": "aapl",
+  "quantity": 1,
+  "type": "sell",
+  "date": "2017-01-05",
+  "amount": 116.61
+}, {
+  "id": 4,
+  "ticker": "vz",
+  "quantity": 1,
+  "type": "sell",
+  "date": "2017-01-05",
+  "amount": 54.64
+}]
