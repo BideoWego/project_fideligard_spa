@@ -8,7 +8,7 @@ import Title from './Title';
 import Trades from './Trades';
 import Transactions from './Transactions';
 import USD from './USD';
-import USDDiff from './USD';
+import { USDDiff } from './USD';
 
 export {
   Dates,
