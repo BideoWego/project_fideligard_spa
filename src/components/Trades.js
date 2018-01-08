@@ -7,7 +7,17 @@ import {
 } from 'reactstrap';
 import USD from './USD';
 
-const Trades = ({ ticker, symbol, stock, date, quantity, onChangeQuantity }) => (
+const Trades = ({
+  ticker,
+  symbol,
+  stock,
+  date,
+  quantity,
+  tradeType,
+  onChangeQuantity,
+  onChangeTradeType,
+  onSubmitTrade
+}) => (
   <div className="Trade">
     <h1>Trade</h1>
     <div className="row">
@@ -19,13 +29,23 @@ const Trades = ({ ticker, symbol, stock, date, quantity, onChangeQuantity }) => 
           <div className="col">
             <FormGroup check>
               <Label check>
-                <Input type="radio" name="buy_sell" defaultChecked/>{' '}
+                <Input
+                  type="radio"
+                  name="tradeType"
+                  value="buy"
+                  onChange={onChangeTradeType}
+                  checked={tradeType === "buy"} />{' '}
                 Buy
               </Label>
             </FormGroup>
             <FormGroup check>
               <Label check>
-                <Input type="radio" name="buy_sell" />{' '}
+                <Input
+                  type="radio"
+                  name="tradeType"
+                  value="sell"
+                  onChange={onChangeTradeType}
+                  checked={tradeType === "sell"} />{' '}
                 Sell
               </Label>
             </FormGroup>
@@ -57,7 +77,7 @@ const Trades = ({ ticker, symbol, stock, date, quantity, onChangeQuantity }) => 
           </h3>
         </div>
         <FormGroup>
-          <Button>Submit</Button>
+          <Button onClick={onSubmitTrade}>Submit</Button>
         </FormGroup>
       </div>
     </div>

@@ -19,7 +19,7 @@ class App extends Component {
     this.state = Object.assign({
       selectedDateIndex: 0,
       selectedDate: data.dates[0],
-      selectedTicker: 'aapl'
+      transactions: []
     }, data);
   }
 
@@ -28,6 +28,16 @@ class App extends Component {
       selectedDateIndex: index,
       selectedDate: this.state.dates[index]
     });
+  }
+
+  createTransaction = transaction => {
+    console.log(transaction);
+    this.setState({
+      transactions: [
+        ...this.state.transactions,
+        transaction
+      ]
+    }, () => console.log(this.state.transactions));
   }
 
   render() {
@@ -67,6 +77,7 @@ class App extends Component {
                         stocks={this.state.stocks}
                         date={this.state.selectedDate}
                         tickers={this.state.tickers}
+                        createTransaction={this.createTransaction}
                         {...props} />
                     )} />
                     <Redirect to="/404" />
