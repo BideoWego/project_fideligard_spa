@@ -29,7 +29,7 @@ class Navigation extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Navigation">
         <Navbar color="faded" light expand="md">
           <NavbarBrand href="/">Fideligard</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
