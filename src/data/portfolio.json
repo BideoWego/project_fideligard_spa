@@ -1,0 +1,22 @@
+{
+  "positions": {
+    "2017-01-03": [{
+      "id": 1,
+      "ticker": "aapl",
+      "quantity": 5
+    }, {
+      "id": 2,
+      "ticker": "vz",
+      "quantity": 3
+    }],
+    "2017-01-05": [{
+      "id": 3,
+      "ticker": "aapl",
+      "quantity": 4
+    }, {
+      "id": 4,
+      "ticker": "vz",
+      "quantity": 2
+    }]
+  }
+}

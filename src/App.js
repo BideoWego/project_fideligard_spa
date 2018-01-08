@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Route,
   Switch,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom';
 import Title from './components/Title';
 import Error404 from './components/Error404';
@@ -14,17 +15,19 @@ import TradesContainer from './containers/TradesContainer';
 import Transactions from './components/Transactions';
 import { default as data } from './data/scrubbed';
 import { default as transactions } from './data/transactions';
+import { default as portfolio } from './data/portfolio';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
      // TODO change bank to be date sensitive
     this.state = Object.assign({
       selectedDateIndex: 0,
       selectedDate: data.dates[0],
       nextTransactionId: 5,
+      bank: 1000000,
       transactions,
-      bank: 1000000
+      portfolio
     }, data);
   }
 
@@ -50,6 +53,8 @@ class App extends Component {
   }
 
   render() {
+    const positions = this.state.portfolio.positions[this.state.selectedDate];
+
     return (
       <div id="app" className="App">
         <Title title="Fideligard" />
@@ -76,8 +81,15 @@ class App extends Component {
                     setSelectedDateIndex={this.setSelectedDateIndex}
                     selectedDateIndex={this.state.selectedDateIndex} />
                   <Switch>
-                    <Route exact path="/" component={Portfolios} />
-                    <Route exact path="/portfolios" component={Portfolios} />
+                    {/* TODO make PortfoliosContainer for calculations */}
+                    <Route exact path="/" render={() => (
+                      <Redirect to="/portfolios" />
+                    )} />
+                    <Route exact path="/portfolios" render={props => (
+                      <Portfolios
+                        bank={this.state.bank}
+                        positions={positions} />
+                    )} />
                     <Route
                       exact
                       path="/transactions"
