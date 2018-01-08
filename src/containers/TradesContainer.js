@@ -17,12 +17,16 @@ class TradesContainer extends Component {
     this.setState({ tradeType });
   }
 
-  onSubmitTrade = e => {
+  onSubmitTrade = (e, amount) => {
+    const direction = this.state.tradeType === 'sell' ? 1 : -1;
+    amount *= direction;
+
     this.props.createTransaction({
       ticker: this.props.match.params.ticker,
       quantity: this.state.quantity,
       type: this.state.tradeType,
-      date: this.props.date
+      date: this.props.date,
+      amount
     });
 
     const state = this._initialState();
@@ -37,9 +41,9 @@ class TradesContainer extends Component {
         <Trades
           ticker={this.props.tickers[this.props.match.params.ticker]}
           symbol={this.props.match.params.ticker}
-          date={this.props.date}
           stock={stock}
-          tickers={this.props.tickers}
+          bank={this.props.bank}
+          date={this.props.date}
           quantity={this.state.quantity}
           tradeType={this.state.tradeType}
           onChangeQuantity={this.onChangeQuantity}

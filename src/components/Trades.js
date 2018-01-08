@@ -11,6 +11,7 @@ const Trades = ({
   ticker,
   symbol,
   stock,
+  bank,
   date,
   quantity,
   tradeType,
@@ -77,7 +78,10 @@ const Trades = ({
           </h3>
         </div>
         <FormGroup>
-          <Button onClick={onSubmitTrade}>Submit</Button>
+          <Button
+            onClick={e => onSubmitTrade(e, stock.close * quantity)}>
+            Submit
+          </Button>
         </FormGroup>
       </div>
     </div>

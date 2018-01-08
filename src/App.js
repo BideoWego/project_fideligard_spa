@@ -4,6 +4,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
+import Title from './components/Title';
 import Error404 from './components/Error404';
 import Navigation from './components/Navigation';
 import DatesContainer from './containers/DatesContainer';
@@ -19,7 +20,8 @@ class App extends Component {
     this.state = Object.assign({
       selectedDateIndex: 0,
       selectedDate: data.dates[0],
-      transactions: []
+      transactions: [],
+      bank: 100000
     }, data);
   }
 
@@ -31,18 +33,19 @@ class App extends Component {
   }
 
   createTransaction = transaction => {
-    console.log(transaction);
     this.setState({
       transactions: [
         ...this.state.transactions,
         transaction
-      ]
-    }, () => console.log(this.state.transactions));
+      ],
+      bank: this.state.bank + transaction.amount
+    }, () => console.log(this.state));
   }
 
   render() {
     return (
       <div id="app" className="App">
+        <Title title="Fideligard" />
         <Navigation />
           <Switch>
             <Route
@@ -78,6 +81,7 @@ class App extends Component {
                         date={this.state.selectedDate}
                         tickers={this.state.tickers}
                         createTransaction={this.createTransaction}
+                        bank={this.state.bank}
                         {...props} />
                     )} />
                     <Redirect to="/404" />
