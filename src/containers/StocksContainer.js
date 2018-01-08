@@ -10,7 +10,7 @@ class StocksContainer extends Component {
     };
   }
 
-  onFilterChange = e => {
+  onChangeFilter = e => {
     const filter = e.target.value;
     const tickers = Object.assign({}, this.props.tickers);
     Object.keys(tickers).forEach(key => {
@@ -32,7 +32,7 @@ class StocksContainer extends Component {
           stocks={this.props.stocks[this.props.date]}
           tickers={this.state.tickers}
           filter={this.state.filter}
-          onChange={this.onFilterChange} />
+          onChangeFilter={this.onChangeFilter} />
       </div>
     );
   }

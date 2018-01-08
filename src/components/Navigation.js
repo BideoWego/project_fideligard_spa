@@ -46,14 +46,6 @@ class Navigation extends Component {
               <NavItem>
                 <NavLink
                   activeClassName="active"
-                  to="/trades"
-                  tag={RRNavLink}>
-                  Trades
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  activeClassName="active"
                   to="/transactions"
                   tag={RRNavLink}>
                   Transactions

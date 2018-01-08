@@ -1,6 +1,7 @@
 import React from 'react';
+import { Input } from 'reactstrap';
 
-const Dates = ({ dates, onChange, value }) => (
+const Dates = ({ dates, onChangeDate, value }) => (
   <div className="Dates">
     <h2>Date: {dates[value]}</h2>
     <div className="row justify-content-between">
@@ -11,13 +12,13 @@ const Dates = ({ dates, onChange, value }) => (
         {dates[dates.length - 1]}
       </div>
     </div>
-    <input
+    <Input
       type="range"
-      min="0"
+      min={0}
       max={dates.length - 1}
-      step="1"
+      step={1}
       value={value}
-      onChange={onChange} />
+      onChange={onChangeDate} />
   </div>
 );
 

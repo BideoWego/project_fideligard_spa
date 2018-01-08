@@ -1,7 +1,9 @@
 import React from 'react';
-import USD from './USD';
+import { default as USD, USDDiff } from './USD';
+import { NavLink } from 'react-router-dom';
+import { Input } from 'reactstrap';
 
-const Stocks = ({ stocks, tickers, filter, onChange }) => {
+const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
   const stocksList = Object.keys(tickers).length ? (
     <table className="table">
       <thead>
@@ -21,9 +23,12 @@ const Stocks = ({ stocks, tickers, filter, onChange }) => {
             <tr key={ticker}>
               <td>{ticker.toUpperCase()}</td>
               <td>{<USD amount={stock.close} className="text-primary" />}</td>
-              <td>{stock.d1 ? <USD amount={stock.d1} /> : "N/A"}</td>
-              <td>{stock.d7 ? <USD amount={stock.d7} /> : "N/A"}</td>
-              <td>{stock.d30 ? <USD amount={stock.d30} /> : "N/A"}</td>
+              <td>{<USDDiff amount={stock.d1} />}</td>
+              <td>{<USDDiff amount={stock.d7} />}</td>
+              <td>{<USDDiff amount={stock.d30} />}</td>
+              <td>
+                {<NavLink to={`/trades/${ ticker }`}>Trade</NavLink>}
+              </td>
             </tr>
           );
         })}
@@ -38,12 +43,12 @@ const Stocks = ({ stocks, tickers, filter, onChange }) => {
           <h1>Stocks</h1>
         </div>
         <div className="col-8">
-          <input
+          <Input
             type="text"
             className="form-control"
             placeholder="Filter..."
             value={filter}
-            onChange={onChange} />
+            onChange={onChangeFilter} />
         </div>
       </div>
       {stocksList}

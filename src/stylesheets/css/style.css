@@ -1,3 +1,5 @@
 .Dates input[type="range"] {
+  padding: 0;
   width: 100%;
+  border: none;
 }
