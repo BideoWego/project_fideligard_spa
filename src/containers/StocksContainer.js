@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Stocks from '../components/Stocks';
+import { Stocks } from '../components';
 
 class StocksContainer extends Component {
   constructor(props) {

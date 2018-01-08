@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import {
   Route,
   Switch,
-  Redirect,
-  withRouter
+  Redirect
 } from 'react-router-dom';
-import Title from './components/Title';
-import Error404 from './components/Error404';
-import Navigation from './components/Navigation';
-import DatesContainer from './containers/DatesContainer';
-import Portfolios from './components/Portfolios';
-import StocksContainer from './containers/StocksContainer';
-import TradesContainer from './containers/TradesContainer';
-import Transactions from './components/Transactions';
-import { default as data } from './data/scrubbed';
-import { default as transactions } from './data/transactions';
-import { default as portfolio } from './data/portfolio';
+import {
+  Title,
+  Error404,
+  Navigation,
+  Portfolios,
+  Transactions
+} from './components';
+import {
+  DatesContainer,
+  StocksContainer,
+  TradesContainer
+} from './containers';
+import {
+  scrubbed as data,
+  transactions,
+  portfolio
+} from './data';
 
 class App extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dates from '../components/Dates';
+import { Dates } from '../components';
 
 class DatesContainer extends Component {
   constructor(props) {

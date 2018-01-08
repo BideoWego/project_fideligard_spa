@@ -5,8 +5,10 @@ import {
   Input,
   Button
 } from 'reactstrap';
-import USD from './USD';
-import StringUtil from './StringUtil';
+import {
+  USD,
+  StringUtil
+} from '.';
 
 const Trades = ({
   ticker,

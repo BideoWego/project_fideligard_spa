@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Trades from '../components/Trades';
+import { Trades } from '../components';
 
 class TradesContainer extends Component {
   constructor(props) {

@@ -1,6 +1,8 @@
 import React from 'react';
-import USD from './USD';
-import StringUtil from './StringUtil';
+import {
+  USD,
+  StringUtil
+} from '.';
 
 const Transactions = ({ transactions }) => {
   const transactionsList = (

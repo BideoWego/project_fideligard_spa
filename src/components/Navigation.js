@@ -9,7 +9,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  NavLink
+} from 'reactstrap';
 
 class Navigation extends Component {
   constructor(props) {

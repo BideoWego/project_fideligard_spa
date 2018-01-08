@@ -1,8 +1,11 @@
 import React from 'react';
-import { default as USD, USDDiff } from './USD';
 import { NavLink } from 'react-router-dom';
 import { Input } from 'reactstrap';
-import StringUtil from './StringUtil';
+import {
+  USD,
+  USDDiff,
+  StringUtil
+} from '.';
 
 const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
   const stocksList = (
