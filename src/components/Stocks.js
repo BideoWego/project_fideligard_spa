@@ -5,7 +5,7 @@ import { Input } from 'reactstrap';
 import StringUtil from './StringUtil';
 
 const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
-  const stocksList = Object.keys(tickers).length ? (
+  const stocksList = (
     <table className="table">
       <thead>
         <tr>
@@ -37,7 +37,7 @@ const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
         })}
       </tbody>
     </table>
-  ) : <p className="text-danger">No matched tickers</p>;
+  );
 
   return (
     <div className="Stocks">
@@ -54,7 +54,9 @@ const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
             onChange={onChangeFilter} />
         </div>
       </div>
-      {stocksList}
+      {Object.keys(tickers).length ?
+        stocksList :
+        <p className="text-danger">No matched tickers</p>}
     </div>
   );
 };
