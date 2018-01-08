@@ -6,34 +6,36 @@ import {
 
 const Transactions = ({ transactions }) => {
   const transactionsList = (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Symbol</th>
-          <th>Type</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map(transaction => (
-          <tr key={transaction.id}>
-            <td>{transaction.date}</td>
-            <td>
-              <StringUtil fn="upperCase" string={transaction.ticker} />
-            </td>
-            <td>
-              <StringUtil fn="capitalize" string={transaction.type} />
-            </td>
-            <td>{transaction.quantity}</td>
-            <td>
-              <USD amount={transaction.amount} />
-            </td>
+    <div className="table-responsive">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Symbol</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {transactions.map(transaction => (
+            <tr key={transaction.id}>
+              <td>{transaction.date}</td>
+              <td>
+                <StringUtil fn="upperCase" string={transaction.ticker} />
+              </td>
+              <td>
+                <StringUtil fn="capitalize" string={transaction.type} />
+              </td>
+              <td>{transaction.quantity}</td>
+              <td>
+                <USD amount={transaction.amount} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 
   return (

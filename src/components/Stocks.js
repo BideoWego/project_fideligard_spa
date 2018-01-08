@@ -9,37 +9,39 @@ import {
 
 const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
   const stocksList = (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Symbol</th>
-          <th>Price</th>
-          <th>1d</th>
-          <th>7d</th>
-          <th>30d</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.keys(tickers).map(ticker => {
-          const stock = stocks[ticker];
-          return (
-            <tr key={ticker}>
-              <td>
-                <StringUtil fn="upperCase" string={ticker} />
-              </td>
-              <td>{<USD amount={stock.close} className="text-primary" />}</td>
-              <td>{<USDDiff amount={stock.d1} />}</td>
-              <td>{<USDDiff amount={stock.d7} />}</td>
-              <td>{<USDDiff amount={stock.d30} />}</td>
-              <td>
-                {<NavLink to={`/trades/${ ticker }`}>Trade</NavLink>}
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="table-responsive">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>1d</th>
+            <th>7d</th>
+            <th>30d</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(tickers).map(ticker => {
+            const stock = stocks[ticker];
+            return (
+              <tr key={ticker}>
+                <td>
+                  <StringUtil fn="upperCase" string={ticker} />
+                </td>
+                <td>{<USD amount={stock.close} className="text-primary" />}</td>
+                <td>{<USDDiff amount={stock.d1} />}</td>
+                <td>{<USDDiff amount={stock.d7} />}</td>
+                <td>{<USDDiff amount={stock.d30} />}</td>
+                <td>
+                  {<NavLink to={`/trades/${ ticker }`}>Trade</NavLink>}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 
   return (
