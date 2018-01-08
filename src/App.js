@@ -75,7 +75,9 @@ class App extends Component {
                     <Route
                       exact
                       path="/transactions"
-                      component={Transactions} />
+                      render={props => (
+                        <Transactions transactions={this.state.transactions} />
+                      )} />
                     <Route path="/trades/:ticker" render={props => (
                       <TradesContainer
                         stocks={this.state.stocks}

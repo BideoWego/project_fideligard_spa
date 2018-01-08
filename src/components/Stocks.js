@@ -2,6 +2,7 @@ import React from 'react';
 import { default as USD, USDDiff } from './USD';
 import { NavLink } from 'react-router-dom';
 import { Input } from 'reactstrap';
+import StringUtil from './StringUtil';
 
 const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
   const stocksList = Object.keys(tickers).length ? (
@@ -21,7 +22,9 @@ const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
           const stock = stocks[ticker];
           return (
             <tr key={ticker}>
-              <td>{ticker.toUpperCase()}</td>
+              <td>
+                <StringUtil fn="upperCase" string={ticker} />
+              </td>
               <td>{<USD amount={stock.close} className="text-primary" />}</td>
               <td>{<USDDiff amount={stock.d1} />}</td>
               <td>{<USDDiff amount={stock.d7} />}</td>

@@ -6,6 +6,7 @@ import {
   Button
 } from 'reactstrap';
 import USD from './USD';
+import StringUtil from './StringUtil';
 
 const Trades = ({
   ticker,
@@ -28,7 +29,11 @@ const Trades = ({
         <div className="row">
           <div className="col">
             <h2>Company: {ticker.name}</h2>
-            <h2>Symbol: {symbol.toUpperCase()}</h2>
+            <h2>
+              Symbol:
+              {' '}
+              <StringUtil fn="upperCase" string={symbol} />
+            </h2>
             <h3>Date: {date}</h3>
           </div>
           <div className="col">
