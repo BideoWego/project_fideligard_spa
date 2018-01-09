@@ -89,14 +89,14 @@ class App extends Component {
               } />
             <Route path="*" render={props => (
               <div className="row justify-content-around">
-                <div className="col-5">
+                <div className="col-lg-5">
                   <StocksContainer
                     stocks={this.state.stocks.byDate}
                     tickers={this.state.tickers}
                     date={this.state.selectedDate}
                     {...props} />
                 </div>
-                <div className="col-5">
+                <div className="col-lg-5">
                   <DatesContainer
                     dates={this.state.dates}
                     setSelectedDateIndex={this.setSelectedDateIndex}
