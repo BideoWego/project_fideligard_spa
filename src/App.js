@@ -44,6 +44,9 @@ class App extends Component {
   }
 
   createTransaction = transaction => {
+    const positions = this.state.portfolio.positions;
+    const position = this.state.portfolio.positions[transaction.date] || [];
+
     this.setState({
       transactions: [
         ...this.state.transactions,
@@ -52,6 +55,19 @@ class App extends Component {
           ...transaction
         }
       ],
+      portfolio: {
+        positions: {
+          ...positions,
+          [transaction.date]: [
+            ...position,
+            {
+              id: this.state.nextTransactionId,
+              ticker: transaction.ticker,
+              quantity: transaction.quantity
+            }
+          ]
+        }
+      },
       nextTransactionId: this.state.nextTransactionId + 1,
       bank: this.state.bank + transaction.amount
     }, () => console.log(this.state));
