@@ -7,7 +7,7 @@ import {
 const Transactions = ({ transactions }) => {
   const transactionsList = (
     <div className="table-responsive">
-      <table className="table">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Date</th>

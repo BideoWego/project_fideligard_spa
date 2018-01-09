@@ -10,7 +10,7 @@ import {
 const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
   const stocksList = (
     <div className="table-responsive">
-      <table className="table">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Symbol</th>
