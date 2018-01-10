@@ -8,13 +8,13 @@ import {
   Title,
   Error404,
   Navigation,
-  Portfolios,
   Transactions
 } from './components';
 import {
   DatesContainer,
   StocksContainer,
-  TradesContainer
+  TradesContainer,
+  PortfoliosContainer
 } from './containers';
 import {
   scrubbed as data,
@@ -107,7 +107,7 @@ class App extends Component {
                       <Redirect to="/portfolios" />
                     )} />
                     <Route exact path="/portfolios" render={props => (
-                      <Portfolios
+                      <PortfoliosContainer
                         bank={this.state.bank}
                         positions={positions} />
                     )} />

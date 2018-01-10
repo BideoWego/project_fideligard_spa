@@ -14,7 +14,6 @@ class DatesContainer extends Component {
   }
 
   render() {
-
     return (
       <div className="DatesContainer">
         <Dates

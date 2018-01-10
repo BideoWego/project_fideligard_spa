@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  USD,
-  StringUtil
-} from '.';
+import { USD } from '.';
+import voca from 'voca';
 
 const Transactions = ({ transactions }) => {
   const transactionsList = (
@@ -22,10 +20,10 @@ const Transactions = ({ transactions }) => {
             <tr key={transaction.id}>
               <td>{transaction.date}</td>
               <td>
-                <StringUtil fn="upperCase" string={transaction.ticker} />
+                {transaction.ticker.toUpperCase()}
               </td>
               <td>
-                <StringUtil fn="capitalize" string={transaction.type} />
+                {voca.capitalize(transaction.type)}
               </td>
               <td>{transaction.quantity}</td>
               <td>

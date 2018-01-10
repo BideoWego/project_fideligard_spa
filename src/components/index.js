@@ -3,7 +3,6 @@ import Error404 from './Error404';
 import Navigation from './Navigation';
 import Portfolios from './Portfolios';
 import Stocks from './Stocks';
-import StringUtil from './StringUtil';
 import Title from './Title';
 import Trades from './Trades';
 import Transactions from './Transactions';
@@ -16,7 +15,6 @@ export {
   Navigation,
   Portfolios,
   Stocks,
-  StringUtil,
   Title,
   Trades,
   Transactions,

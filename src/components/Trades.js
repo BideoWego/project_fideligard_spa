@@ -5,10 +5,7 @@ import {
   Input,
   Button
 } from 'reactstrap';
-import {
-  USD,
-  StringUtil
-} from '.';
+import { USD } from '.';
 
 const Trades = ({
   ticker,
@@ -34,7 +31,7 @@ const Trades = ({
             <h2>
               Symbol:
               {' '}
-              <StringUtil fn="upperCase" string={symbol} />
+              {symbol.toUpperCase()}
             </h2>
             <h3>Date: {date}</h3>
           </div>

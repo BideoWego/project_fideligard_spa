@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Input } from 'reactstrap';
 import {
   USD,
-  USDDiff,
-  StringUtil
+  USDDiff
 } from '.';
 
 const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
@@ -27,7 +26,7 @@ const Stocks = ({ stocks, tickers, filter, onChangeFilter, onClickTrade }) => {
             return (
               <tr key={ticker}>
                 <td>
-                  <StringUtil fn="upperCase" string={ticker} />
+                  {ticker.toUpperCase()}
                 </td>
                 <td>{<USD amount={stock.close} className="text-primary" />}</td>
                 <td>{<USDDiff amount={stock.d1} />}</td>

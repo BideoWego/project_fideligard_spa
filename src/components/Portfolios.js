@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  USD,
-  StringUtil
-} from '.';
+import { USD } from '.';
 
 const Portfolios = ({ bank, positions=[] }) => {
   const positionsList = (
@@ -25,7 +22,7 @@ const Portfolios = ({ bank, positions=[] }) => {
           {positions.map(position => (
             <tr key={position.id}>
               <td>
-                <StringUtil fn="upperCase" string={position.ticker} />
+                {position.ticker.toUpperCase()}
               </td>
               <td>{position.quantity}</td>
               <td>-</td>
